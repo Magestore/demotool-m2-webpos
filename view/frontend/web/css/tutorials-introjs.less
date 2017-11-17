@@ -1,0 +1,256 @@
+
+@import '_mixins.less';
+
+
+.open-pannel {
+    display: block;
+    position: fixed;
+    right: 0;
+    background-color: #315aa5;
+    padding: 10px;
+    top: 100px;
+    z-index: 888;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    &:before {
+        content: "";
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 777;
+        opacity: 0;
+        visibility: hidden;
+        .transition(0.4s);
+    }
+
+    &.active {
+
+        &:before {
+            opacity: 1;
+            visibility: visible;
+            .transition(0.4s);
+        }
+    }
+}
+
+.tutorials-panel {
+    width: 350px;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    z-index: 888;
+    background-color: #f6f6f7 ;
+    font-size: 13px;  
+    opacity: 0;
+    .transition(0.45s);  
+
+    &.active {
+        opacity: 1;
+        right: 0;
+        .transition(0.45s); 
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .tutorials-panel-default {
+        display: -webkit-flex; 
+        display: flex;
+        flex: 1 1 0;
+        -webkit-flex-direction: column; 
+        flex-direction: column;  
+        -webkit-align-items: stretch;
+        align-items: stretch;
+        -webkit-justify-content: space-between;
+        justify-content: space-between; 
+        height: 100%;
+
+        .tutorials-panel-header {
+            background-color: #315aa5 ;
+            color: #fff;
+            position: relative;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 26px;
+            padding: 7px 10px;
+            
+            width: 100%;
+
+            .clone-pannel {
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                text-align: center;
+                line-height: 40px;
+                color: #fff;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-image: url(../images/icon/delete-cross.png);
+
+                
+
+                span {
+                    display: none;
+                }
+            }
+        }
+
+        .tutorials-panel-bottom {
+            padding: 10px;
+            .clearfix();
+            border-top: 1px solid #d8d8d8;
+            border-left: 1px solid #d8d8d8;
+            border-right: 1px solid #d8d8d8;
+
+            .avata {
+                float: left;
+                width: 60px;
+                height: 60px;
+                margin-right: 10px;
+                border-radius: 100%;
+                overflow: hidden;
+            }
+
+            .detail {
+                overflow: hidden;
+                font-size: 12px;
+                color: #7b7e89;
+            }
+
+            .title {
+                color: #333;
+                font-weight: 600;
+            }
+
+            .btn {
+                background-color: #315aa5 ;
+                color: #fff;
+                border-radius: 3px;
+                padding: 0 15px;
+                line-height: 36px;
+                display: inline-block;
+            }
+        }
+
+        .tutorials-panel-content {
+            padding: 10px;
+            overflow-y: auto;
+            border-left: 1px solid #d8d8d8;
+            border-right: 1px solid #d8d8d8;
+
+            .title {
+                display: block;
+                color: #333;
+                font-weight: bold;
+                font-size: 13px;
+            }
+
+            .btn {
+                background-color: #ef5b34  ;
+                color: #fff;
+                border-radius: 3px;
+                padding: 0 15px;
+                line-height: 50px;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
+
+        .list {
+            padding: 0;
+            margin: 0 0 10px;
+
+            > li {
+                border-radius: 3px;  
+                margin-bottom: 4px; 
+                border: 1px solid #dde1e4;
+                background-color: #fff;
+
+                li {
+                    border-top: 1px solid #dde1e4;
+                    padding-left: 20px;
+                }
+            }
+
+            .children {
+
+                > a {
+                    background-position: center right 10px;
+                    background-repeat: no-repeat;
+                    background-image: url(../images/icon/scroll-arrow-to-down.png);
+                    background-size: 12px auto;
+                }
+            }
+
+            li {
+                list-style: none;
+                line-height: 20px;
+                
+
+                a {
+                    display: block;
+                    padding: 9px 15px 9px 23px;
+                    color: #333333;
+
+                    &:hover {
+                        color:  #315aa5;
+                    }
+                }
+
+                .sub-menu {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.introjs-tooltip {
+    font-size: 13px;
+
+    .introjs-bullets {
+        
+    }
+}
+
+.introjs-tooltipReferenceLayer {
+    
+    .introjs-helperNumberLayer {
+       
+    }
+}
+
+.intro-button_welcome {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #315aa5;
+}

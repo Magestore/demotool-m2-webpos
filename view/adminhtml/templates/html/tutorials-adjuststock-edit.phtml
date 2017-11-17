@@ -1,0 +1,512 @@
+<?php $id = $this->getRequest()->getParam('id'); ?>
+
+<script>
+    require([
+        'jquery',
+        'jquery-intro',
+       
+    ], function($, introJs){
+    	'use strict';
+
+    	
+
+		var currentLocation = location.pathname.substr(1);
+		var id = '<?php echo $this->getRequest()->getParam('id'); ?>';
+
+		
+
+		if ( currentLocation == 'starter-m2-dev/admin/inventorysuccess/adjuststock/edit/id/' + id + '/') { 
+     
+	        adjuststock_edit_1();
+	        
+	    } 
+
+	    if ( currentLocation == 'admin/inventorysuccess/adjuststock/edit/id/' + id + '/') { 
+     
+	        adjuststock_comp();
+
+	        
+			if (localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?>) {
+			    localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?> = Number(localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?>) + 1;
+			} else {
+			    localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?> = 1;
+			}
+			
+			var numberclick = localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?>;
+
+
+			if (numberclick == 1) {
+			    adjuststock_edit_1();
+			}
+	    } 
+
+	    
+	   	function adjuststock_comp() {
+	       
+	        
+	        var preStartTimer = setInterval(function () { 
+	            if (jQuery('.admin__form-loading-mask')[0].style.display == 'none') {
+	                clearInterval(preStartTimer);
+
+	                if (jQuery('input[name="adjuststock_code"]').length >0) { 
+
+				    	var adjuststock_comp = introJs();
+				        adjuststock_comp.setOptions({
+				            steps: [
+				                {
+				                    element:("button[data-index='dynamic_button']"),
+				                    intro: ""
+				                    + "<p class='intro-main-title'>The stock adjustment has been completed. <br> Click next if you want to explore Goods Receipt/Delivery workflow</p>"
+				                    ,
+				                    position: 'right'
+				                }
+				                
+				            ],
+				            showBullets:false,
+				            exitOnOverlayClick:false,
+				            skipLabel:'Close',
+				            doneLabel:'Close',
+				            showStepNumbers:false,
+				            showBullets:false
+				        });
+				        setTimeout(function(){  
+		                    adjuststock_comp.start();
+
+		                }, 700);
+
+		                adjuststock_comp.onafterchange(function(targetElement) {
+                       
+                        
+				            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+
+				            if (adjuststock_comp._currentStep == 0) { 
+				        
+				                jQuery('.introjs-prevbutton').remove();
+				                jQuery('.introjs-nextbutton').remove();
+				                jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+				                jQuery('.introjs-next-tutorial2').click(function(event) {
+				                    
+				                   
+				                    adjuststock_comp.exit();
+
+				                    setTimeout(function(){  
+				                        inventory3();
+
+				                    }, 400);
+				                });
+				            }   
+				        });
+
+				    }
+
+	            } 
+	        },700)
+	        
+	    }
+	  	
+       	function inventory3() {
+	        var intro1 = introJs();
+	        intro1.setOptions({
+	            steps: [
+	            {
+	                element: ('#menu-magento-sales-sales'),
+	                intro: ""
+	                + "<p class='intro-main-title'>Sales module allows you to manage sales orders, invoices, shipments, and credit memos.</p>"
+	                ,
+	                position: 'right'
+	            },
+	            {
+	                element:("li[data-ui-id='menu-magento-sales-sales-order']"),
+	                intro: ""
+	                + "<p class='intro-main-title'>Order tab assists you to create a new order and manage all information of orders you created</p>",
+	                position: 'right'
+	            },
+	            ],
+	            scrollToElement:true,
+	            showBullets:false,
+	            exitOnOverlayClick:false,
+	            skipLabel:'Close',
+	            doneLabel:'Close',
+	            showStepNumbers:false,
+	            showBullets:false
+	        });
+
+
+	        intro1.start();
+
+
+	        intro1.onafterchange(function (targetElement) {
+	            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+	            if (intro1._currentStep == 1) { addNextTutorialButton($("li[data-ui-id='menu-magento-sales-sales-order'] a")[0]); }   
+	        });
+	        
+	        intro1.onbeforechange(function(targetElement) {
+	            removeNextTutorialButton();
+
+	            if (intro1._currentStep == 0) {
+	                $('#menu-magento-sales-sales .action-close')[0].click();
+	                setTimeout(function(){  intro1.refresh();
+	                    
+	                    jQuery('.introjs-helperLayer').css('z-index','99999998');
+	                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+	                }, 100);
+	            }
+	            if (intro1._currentStep == 1) {
+	                $('#menu-magento-sales-sales a')[0].click();
+	                setTimeout(function(){  intro1.refresh();
+	                   
+	                    jQuery('.introjs-helperLayer').css('pointer-events','none');
+	                    jQuery('.introjs-overlay').css('pointer-events','none');
+	                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+
+	                }, 100);
+	            }
+	        });
+
+	        intro1.onexit(function() {
+	           $('#menu-magento-sales-sales .action-close')[0].click();
+	        });
+	    }
+
+
+    	function adjuststock_edit_1() {
+
+    		var preStartTimer = setInterval(function () { 
+	            if ($$('.admin__form-loading-mask').first().getStyle('display')=='none') {
+	            	clearInterval(preStartTimer);
+	                var intro1 = introJs();
+			        intro1.setOptions({
+			            steps: [
+			                {
+			                    element:("button[data-index='dynamic_button']"),
+			                    intro: ""
+			                    + "<p class='intro-main-title'>Click here to add the product list you are creating the adjustment line for</p>"
+			                    ,
+			                    position: 'right'
+			                }
+			                
+			            ],
+			            showBullets:false,
+			            exitOnOverlayClick:false,
+			            skipLabel:'Close',
+			            doneLabel:'Close',
+			            showStepNumbers:false,
+			            showBullets:false
+			        });
+
+			       
+			        setTimeout(function(){  
+	                    intro1.start();
+
+	                }, 700);
+
+			        intro1.onafterchange(function (targetElement) {
+			            if (intro1._currentStep == 0) { 
+			            	
+
+			            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            $("button[data-index='dynamic_button']").click();
+					            intro1.exit();
+
+					            setTimeout(function(){  
+						            adjuststock_edit_2();
+
+						        }, 700);
+					        });
+			            }   
+			        });
+	               
+	            } 
+	        },700)
+	        
+	    }
+
+	    function adjuststock_edit_2() {
+	        var preStartTimer = setInterval(function () { 
+	            if ($$('.admin__data-grid-loading-mask').first().getStyle('display')=='none') {
+	                clearInterval(preStartTimer);
+	                var intro2 = introJs();
+	                intro2.setOptions({
+	                    steps: [
+	                        {
+	                          
+	                            element: ('#idscheck1'),
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Select all products you are adding the adjustment by checking the box</p>"
+	                            ,
+	                            position: 'right'
+	                        },
+	                        { 
+	                           
+	                            element: document.querySelectorAll('.action-primary')[1],
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Click here to add list of products you selected to the stock adjustment</p>"
+	                            ,
+	                            position: 'right'
+	                        }
+	                    ],
+	                    showBullets:false,
+	                    exitOnOverlayClick:false,
+	                    skipLabel:'Close',
+	                    doneLabel:'Close',
+	                    showStepNumbers:false,
+	                    showBullets:false
+	                });
+
+	                setTimeout(function(){  
+	                    intro2.start();
+
+	                }, 700);
+
+	                intro2.onafterchange(function (targetElement) {
+			            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+			            
+			           
+
+			            if (intro2._currentStep == 1) { 
+
+			            	
+						            jQuery('.introjs-prevbutton').remove();
+		            				jQuery('.introjs-nextbutton').remove();
+					            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+
+						       
+	            	
+			            	
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            
+					            document.querySelectorAll('.action-primary')[1].click();
+					            intro2.exit();
+
+					            setTimeout(function(){  
+						            adjuststock_edit_3();
+
+						        }, 700);
+					        });
+			            }   
+			        });
+
+	                intro2.onbeforechange(function(targetElement) {
+			            removeNextTutorialButton();
+			            if (intro2._currentStep == 0) {
+			                
+			                setTimeout(function(){  
+			                	intro2.refresh();
+			                    jQuery('.introjs-helperLayer').css('pointer-events','none');
+			                    jQuery('.introjs-overlay').css('pointer-events','none');
+			                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+
+			                }, 100);
+			                setTimeout(function(){ scrollToTop(); }, 400);
+			            }
+			            
+			            if (intro2._currentStep == 1) {
+			                $('#idscheck1').click();
+
+			                setTimeout(function(){  
+			                	intro2.refresh();
+			                    jQuery('.introjs-helperLayer').css('pointer-events','none');
+			                    jQuery('.introjs-overlay').css('pointer-events','none');
+			                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+
+			                }, 100);
+			                setTimeout(function(){ scrollToTop(); }, 400);
+			            }
+
+			        });
+	               
+	            } 
+	        },700)
+	    }
+
+	    function adjuststock_edit_3() {
+	        var preStartTimer = setInterval(function () { 
+	            if ($$('.admin__form-loading-mask').first().getStyle('display')=='none') {
+	                clearInterval(preStartTimer);
+	                var intro3 = introJs();
+	                intro3.setOptions({
+	                    steps: [
+	                       
+	                        {
+	                        	element:("div[data-index='adjust_qty']"),
+	                        
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Enter the quantity that you are adjusting by. You can increase it or decrease it by typing the number in the box </p>"
+	                            ,
+	                            position: 'right'
+	                        },
+	                        {
+	                        	element:("#adjust"),
+	                        
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Click here to update the inventory records</p>"
+	                            ,
+	                            position: 'right'
+	                        },
+	                        
+	                    ],
+	                    showBullets:false,
+	                    exitOnOverlayClick:false,
+	                    skipLabel:'Close',
+	                    doneLabel:'Close',
+	                    showStepNumbers:false,
+	                    showBullets:false
+	                });
+
+	                setTimeout(function(){  
+	                    intro3.start();
+
+	                }, 700);
+
+	                
+
+			        intro3.onafterchange(function (targetElement) {
+			            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+			           /* if (intro3._currentStep == 1) { 
+			            	addNextTutorialButton(document.querySelectorAll('.action-accept')[0]); 
+			            } */ 
+
+			            if (intro3._currentStep == 1) { 
+	            	
+			            	jQuery('.introjs-prevbutton').remove();
+            				jQuery('.introjs-nextbutton').remove();
+			            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            
+					            $("#adjust").click();
+					            intro3.exit();
+
+					            setTimeout(function(){  
+						            adjuststock_edit_4();
+
+						        }, 700);
+					        });
+			            }   
+			        });
+	                
+	                
+	               
+	            } 
+	        },700)
+	    }
+
+	    function adjuststock_edit_4() {
+	        var preStartTimer = setInterval(function () { 
+	            if ($$('.modal-popup.confirm').first().getStyle('z-index')=='900') {
+	                clearInterval(preStartTimer);
+	                var intro4 = introJs();
+	                intro4.setOptions({
+	                    steps: [
+	                       
+	                       
+	                        {
+	                        	
+	                        	element: document.querySelectorAll('.action-accept')[0],
+	                        
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Click 'OK' to confirm that you want to adjust stock</p>"
+	                            ,
+	                            position: 'right'
+	                        }
+	                    ],
+	                    showBullets:false,
+	                    exitOnOverlayClick:false,
+	                    skipLabel:'Close',
+	                    doneLabel:'Close',
+	                    showStepNumbers:false,
+	                    showBullets:false
+	                });
+
+	                setTimeout(function(){  
+	                    intro4.start();
+
+	                }, 700);
+
+	                
+
+			        intro4.onafterchange(function (targetElement) {
+			            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+			            if (intro4._currentStep == 0) { 
+			            	
+
+			            	jQuery('.introjs-prevbutton').remove();
+            				jQuery('.introjs-nextbutton').remove();
+			            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            
+					            document.querySelectorAll('.action-accept')[0].click();
+					            intro4.exit();
+
+					            
+					        });
+			            }   
+			        });
+	                
+	                intro4.onbeforechange(function(targetElement) {
+			            removeNextTutorialButton();
+			            
+			            
+			        });
+
+			        intro4.oncomplete(function(targetElement) { 
+			        	intro4.exit(); 
+			        });
+	               
+	            } 
+	        },700)
+	    }
+
+	    function addNextTutorialButton(element) {
+	        jQuery('.introjs-nextbutton').hide();
+	        jQuery('.introjs-prevbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial">Next </a> ');
+	        jQuery('.introjs-next-tutorial').click(function(event) {
+	            element.click();
+	        });
+	    }
+
+	    function addNextTutorialButton2(element) {
+	        
+	        jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-skipbutton introjs-next-tutorial">Next </a> ');
+	        jQuery('.introjs-next-tutorial').click(function(event) {
+	            element.click();
+	        });
+	    }
+
+	    function removeNextTutorialButton() {
+	        if (jQuery('.introjs-next-tutorial') != undefined)
+	        {
+	            jQuery('.introjs-next-tutorial').remove();
+	            jQuery('.introjs-nextbutton').show();
+	        }
+	    }
+
+	    function scrollToTop(){
+	        jQuery("html, body").animate({ scrollTop: 0 }, "fast");
+	    }
+
+	    function openAllConfigurationTabs() {
+	        $('.section-config span +a').each(function(item) {
+	            if (!item.hasClassName('open'))
+	                item.click();
+	        });
+	    } 
+
+    });
+
+ 	
+</script>
+
+<style type="text/css">
+
+	.page-main-actions .page-actions {
+
+		position: static !important;
+	}
+
+	.page-main-actions  {
+		position: static !important;
+	}
+
+
+</style>

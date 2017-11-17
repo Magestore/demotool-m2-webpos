@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+  ~ * Copyright © 2016 Magestore. All rights reserved.
+  ~ * See COPYING.txt for license details.
+  ~
+  -->
+
+<page layout='webpos' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" >
+    <head>
+        <css src="Magestore_Tutorial/css/introjs.css" media="screen"/>
+        <css src="Magestore_Tutorial/css/tutorials-introjs.css" media="screen"/>
+		<link src="Magestore_Tutorial::js/zopim.js"/>
+    </head>
+    <body>        
+        <referenceContainer name="content">
+            <container name="tutorials-panel" as="tutorials-panel" before="-" >
+                <block class="Magento\Framework\View\Element\Template" name="tutorials-panel-default" as="tutorials-panel-default" before="-" template="Magestore_Tutorial::html/tutorials-panel.phtml" />
+            </container>			
+        </referenceContainer>	
+    </body>
+</page>

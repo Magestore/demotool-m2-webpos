@@ -1,0 +1,538 @@
+<?php $id = $this->getRequest()->getParam('id'); ?>
+
+<script>
+    require([
+        'jquery',
+        'jquery-intro',
+        
+    ], function($, introJs){
+    	'use strict';
+    	
+
+		var currentLocation = location.pathname.substr(1);
+		var id = '<?php echo $this->getRequest()->getParam('id'); ?>';
+
+		
+
+		if ( currentLocation == 'starter-m2-dev/admin/inventorysuccess/stocktaking/edit/id/' + id + '/') { 
+
+	        stocktaking_edit_1();
+	    } 
+	   	
+
+    	
+
+	    if ( currentLocation == 'admin/inventorysuccess/stocktaking/edit/id/' + id + '/') { 
+
+	    	stocktaking_comp();
+
+				if (localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?>) {
+				    localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?> = Number(localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?>) + 1;
+				} else {
+				    localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?> = 1;
+				}
+				
+				var numberclick = localStorage.clickcount<?php echo $this->getRequest()->getParam('id'); ?>;
+
+
+				if (numberclick == 1) {
+				    stocktaking_edit_1();
+				}
+
+				else if (numberclick == 2) {
+					stocktaking_edit_3();
+				}
+
+				else if (numberclick == 3) {
+					
+				}
+
+				else {
+				    
+				}
+	    } 
+
+	    
+		function stocktaking_comp() {
+	       
+	        
+	        var preStartTimer = setInterval(function () { 
+	            if (jQuery('.admin__form-loading-mask')[0].style.display == 'none') {
+	                clearInterval(preStartTimer);
+
+	                if (jQuery('input[name="stocktaking_code"]').length >0) { 
+
+				    	var stocktaking_comp = introJs();
+				        stocktaking_comp.setOptions({
+				            steps: [
+				                {
+				                    element:("button[data-index='dynamic_button']"),
+				                    intro: ""
+				                    + "<p class='intro-main-title'>The stocktaking has been completed.<br> Click next if you want to find out Stock Adjustment</p>"
+				                    ,
+				                    position: 'right'
+				                }
+				                
+				            ],
+				            showBullets:false,
+				            exitOnOverlayClick:false,
+				            skipLabel:'Close',
+				            doneLabel:'Close',
+				            showStepNumbers:false,
+				            showBullets:false
+				        });
+				        setTimeout(function(){  
+		                    stocktaking_comp.start();
+
+		                }, 700);
+
+		                stocktaking_comp.onafterchange(function(targetElement) {
+                       
+                        
+				            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+
+				            if (stocktaking_comp._currentStep == 0) { 
+				        
+				                jQuery('.introjs-prevbutton').remove();
+				                jQuery('.introjs-nextbutton').remove();
+				                jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-next-tutorial ">End Tutorial </a> ');
+				                jQuery('.introjs-next-tutorial').click(function(event) {
+				                    
+				                   
+				                    stocktaking_comp.exit();
+
+				                    setTimeout(function(){  
+				                        inventory2();
+
+				                    }, 400);
+				                });
+				            }   
+				        });
+				    }
+
+	            } 
+	        },700)
+	        
+	    }
+
+	     //New Stock Adjustment
+
+	    function inventory2() {
+	        var intro1 = introJs();
+	        intro1.setOptions({
+	            steps: [
+	            {
+	                element: ('#menu-magestore-inventorysuccess-inventory'),
+	                intro: ""
+	                + "<p class='intro-main-title'>Start Here</p>"
+	                ,
+	                position: 'right'
+	            },
+	            {
+	                element:("li[data-ui-id='menu-magestore-inventorysuccess-create-adjuststock']"),
+	                intro: ""
+	                + "<p class='intro-main-title'>Stock Adjustment allows you to adjust stock if you experience an unbalance between your actual stock and the product list</p>",
+	                position: 'right'
+	            },
+	            ],
+	            showBullets:false,
+	            exitOnOverlayClick:false,
+	            skipLabel:'Close',
+	            doneLabel:'Close',
+	            showStepNumbers:false,
+	            showBullets:false
+	        });
+
+
+	        intro1.start();
+
+	        intro1.onafterchange(function (targetElement) {
+	            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+	            if (intro1._currentStep == 1) { addNextTutorialButton($("li[data-ui-id='menu-magestore-inventorysuccess-create-adjuststock'] a")[0]); }   
+	        });
+	        
+	        intro1.onbeforechange(function(targetElement) {
+	            removeNextTutorialButton();
+	            if (intro1._currentStep == 0) {
+	            $('#menu-magestore-inventorysuccess-inventory .action-close')[0].click();
+	            setTimeout(function(){  intro1.refresh();
+	                jQuery('.introjs-helperLayer').css('z-index','99999998');
+	                $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+	            }, 100);
+	            }
+	            if (intro1._currentStep == 1) {
+	                $('#menu-magestore-inventorysuccess-inventory a')[0].click();
+	                setTimeout(function(){  intro1.refresh();
+	                    jQuery('.introjs-helperLayer').css('pointer-events','none');
+	                    jQuery('.introjs-overlay').css('pointer-events','none');
+	                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+
+	                }, 100);
+	            }
+	        });
+
+	        intro1.onexit(function() {
+	           $('#menu-magestore-inventorysuccess-inventory .action-close')[0].click();
+	        });
+	    }
+	  	
+
+    	function stocktaking_edit_1() {
+
+    		
+
+	        var preStartTimer = setInterval(function () { 
+	            if ($$('.admin__form-loading-mask').first().getStyle('display')=='none') {
+	            	clearInterval(preStartTimer);
+	                var intro1 = introJs();
+			        intro1.setOptions({
+			            steps: [
+			                {
+			                    element:("button[data-index='dynamic_button']"),
+			                    intro: ""
+			                    + "<p class='intro-main-title'>Click here to add list of products you want to stocktake in the warehouse</p>"
+			                    ,
+			                    position: 'right'
+			                }
+			                
+			            ],
+			            showBullets:false,
+			            exitOnOverlayClick:false,
+			            skipLabel:'Close',
+			            doneLabel:'Close',
+			            showStepNumbers:false,
+			            showBullets:false
+			        });
+
+			       
+			        setTimeout(function(){  
+	                    intro1.start();
+
+	                }, 700);
+
+			        intro1.onafterchange(function (targetElement) {
+			            if (intro1._currentStep == 0) { 
+			            	
+
+			            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            $("button[data-index='dynamic_button']").click();
+					            intro1.exit();
+
+					            setTimeout(function(){  
+						            stocktaking_edit_2();
+
+						        }, 700);
+					        });
+			            }   
+			        });
+	               
+	            } 
+	        },700)
+	        
+	    }
+
+	    function stocktaking_edit_2() {
+	        var preStartTimer = setInterval(function () { 
+	            if ($$('.admin__data-grid-loading-mask').first().getStyle('display')=='none') {
+	                clearInterval(preStartTimer);
+	                var intro2 = introJs();
+	                intro2.setOptions({
+	                    steps: [
+	                        {
+	                          
+	                            element: ('#idscheck1'),
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Select all products you want to count and double-check by checking the box</p>"
+	                            ,
+	                            position: 'right'
+	                        },
+	                        {
+	                          
+	                           
+	                            element: document.querySelectorAll('.action-primary')[1],
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Click here to add list of products you selected to stocktake </p>"
+	                            ,
+	                            position: 'right'
+	                        },
+	                        {
+	                          
+	                           
+	                            element: ('#start'),
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Click here to start to count and record the amount of stock for each product in your warehouse</p>"
+	                            ,
+	                            position: 'right'
+	                        }
+	                    ],
+	                    showBullets:false,
+	                    exitOnOverlayClick:false,
+	                    skipLabel:'Close',
+	                    doneLabel:'Close',
+	                    showStepNumbers:false,
+	                    showBullets:false
+	                });
+
+	                setTimeout(function(){  
+	                    intro2.start();
+
+	                }, 1000);
+
+	                intro2.onafterchange(function (targetElement) {
+			            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+			            
+			           
+
+			            if (intro2._currentStep == 2) { 
+	            	
+			            	jQuery('.introjs-prevbutton').remove();
+            				jQuery('.introjs-nextbutton').remove();
+			            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            
+					            $('#start').click();
+					            intro2.exit();
+
+					            setTimeout(function(){  
+						            stocktaking_edit_3();
+
+						        }, 1000);
+					        });
+			            }   
+			        });
+
+	                intro2.onbeforechange(function(targetElement) {
+			            removeNextTutorialButton();
+			            
+			            if (intro2._currentStep == 1) {
+			                $('#idscheck1').click();
+			                setTimeout(function(){  
+			                	intro2.refresh();
+			                    jQuery('.introjs-helperLayer').css('pointer-events','none');
+			                    jQuery('.introjs-overlay').css('pointer-events','none');
+			                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+
+			                }, 100);
+			            }
+
+			            if (intro2._currentStep == 2) {
+			                document.querySelectorAll('.action-primary')[1].click();
+			                setTimeout(function(){  
+			                	intro2.refresh();
+			                    jQuery('.introjs-helperLayer').css('pointer-events','none');
+			                    jQuery('.introjs-overlay').css('pointer-events','none');
+			                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+
+			                }, 100);
+			            }
+
+
+			        });
+	               
+	            } 
+	        },1000)
+	    }
+
+	    function stocktaking_edit_3() {
+	        var preStartTimer = setInterval(function () { 
+	            if ($$('.admin__form-loading-mask').first().getStyle('display')=='none') {
+	                clearInterval(preStartTimer);
+	                var intro3 = introJs();
+	                intro3.setOptions({
+	                    steps: [
+	                       
+	                        {
+	                        	element:("div[data-index='stocktaking_qty']"),
+	                        
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Enter the quantity of each product physically counted and reason of discrepancy (if any)</p>"
+	                            ,
+	                            position: 'left'
+	                        },
+	                        {
+	                        	element:("#confirm"),
+	                        
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Click here to complete the process of data entry</p>"
+	                            ,
+	                            position: 'right'
+	                        }
+	                    ],
+	                    showBullets:false,
+	                    exitOnOverlayClick:false,
+	                    skipLabel:'Close',
+	                    doneLabel:'Close',
+	                    showStepNumbers:false,
+	                    showBullets:false
+	                });
+
+	                setTimeout(function(){  
+	                    intro3.start();
+
+	                }, 700);
+
+	                intro3.onafterchange(function(targetElement) {
+			           
+			            
+			           	$('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+
+			            if (intro3._currentStep == 1) { 
+	            	
+			            	jQuery('.introjs-prevbutton').remove();
+            				jQuery('.introjs-nextbutton').remove();
+			            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            
+					            $("#confirm").click();
+					            intro3.exit();
+
+					            setTimeout(function(){  
+						            stocktaking_edit_4();
+
+						        }, 700);
+					        });
+			            }   
+			        });
+
+			        intro3.onbeforechange(function(targetElement) {
+	                    removeNextTutorialButton();
+
+	                    if (intro3._currentStep == 1) {
+	                        setTimeout(function(){  
+	                            intro3.refresh();
+	                           
+	                            jQuery('.introjs-helperLayer').css('z-index','99999998');
+	                            $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+	                        }, 100);
+
+	                        setTimeout(function(){ scrollToTop(); }, 400);
+	                        
+	                    }
+	                });
+
+			        
+	                
+	               
+	            } 
+	        },700)
+	    }
+
+	    function stocktaking_edit_4() {
+	       	var preStartTimer = setInterval(function () { 
+	            if ($$('.modal-popup.confirm').first().getStyle('z-index')=='900') {
+	                clearInterval(preStartTimer);
+	                var intro4 = introJs();
+	                intro4.setOptions({
+	                    steps: [
+	                       
+	                        {
+	                        	
+	                        	element: document.querySelectorAll('.action-accept')[0],
+	                        
+	                            intro: ""
+	                            + "<p class='intro-main-title'>Click 'OK' to confirm that you want to complete stocktaking.</p>"
+	                            ,
+	                            position: 'right'
+	                        }
+	                    ],
+	                    showBullets:false,
+	                    exitOnOverlayClick:false,
+	                    skipLabel:'Close',
+	                    doneLabel:'Close',
+	                    showStepNumbers:false,
+	                    showBullets:false
+	                });
+
+	                setTimeout(function(){  
+	                    intro4.start();
+
+	                }, 700);
+
+	                
+
+			        intro4.onafterchange(function (targetElement) {
+			            $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
+			            if (intro4._currentStep == 0) { 
+			            	
+
+			            	jQuery('.introjs-prevbutton').remove();
+            				jQuery('.introjs-nextbutton').remove();
+			            	jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial2">Next </a> ');
+					        jQuery('.introjs-next-tutorial2').click(function(event) {
+					            
+					            document.querySelectorAll('.action-accept')[0].click();
+					            intro4.exit();
+
+					            
+					        });
+			            }   
+			        });
+	                
+	                intro4.onbeforechange(function(targetElement) {
+			            removeNextTutorialButton();
+			            
+			            
+			        });
+
+			        intro4.oncomplete(function(targetElement) { 
+			        	intro4.exit(); 
+			        });
+	               
+	            } 
+	        },700)
+	    }
+
+	    function addNextTutorialButton(element) {
+	        jQuery('.introjs-nextbutton').hide();
+	        jQuery('.introjs-prevbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-nextbutton introjs-next-tutorial">Next </a> ');
+	        jQuery('.introjs-next-tutorial').click(function(event) {
+	            element.click();
+	        });
+	    }
+
+	    function addNextTutorialButton2(element) {
+	        
+	        jQuery('.introjs-skipbutton').after(''+ '<a href="javascript:void(0);" class="introjs-button introjs-skipbutton introjs-next-tutorial">Next </a> ');
+	        jQuery('.introjs-next-tutorial').click(function(event) {
+	            element.click();
+	        });
+	    }
+
+	    function removeNextTutorialButton() {
+	        if (jQuery('.introjs-next-tutorial') != undefined)
+	        {
+	            jQuery('.introjs-next-tutorial').remove();
+	            jQuery('.introjs-nextbutton').show();
+	        }
+	    }
+
+	    function scrollToTop(){
+	        jQuery("html, body").animate({ scrollTop: 0 }, "fast");
+	    }
+
+	    function openAllConfigurationTabs() {
+	        $('.section-config span +a').each(function(item) {
+	            if (!item.hasClassName('open'))
+	                item.click();
+	        });
+	    } 
+
+    });
+
+ 	
+</script>
+
+<style type="text/css">
+
+	.page-main-actions .page-actions {
+
+		position: static !important;
+	}
+
+	.page-main-actions  {
+		position: static !important;
+	}
+
+
+</style>
