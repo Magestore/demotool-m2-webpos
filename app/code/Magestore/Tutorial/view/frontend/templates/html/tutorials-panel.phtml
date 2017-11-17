@@ -1,4 +1,8 @@
-
+<?php
+$helperPermission = $this->helper('Magestore\Webpos\Helper\Permission');
+$webposShowContent = ($helperPermission->getCurrentUser() && !$helperPermission->isShowChoosePosLocation())?true:false;
+if($webposShowContent){
+?>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVJSMVD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!--end edit setup livechat when customer login -->
 <a href="#" class="open-pannel"><img src="<?php echo $this->getViewFileUrl('Magestore_Tutorial::images/tutorial-icon.png'); ?>" /><span>Tutorial<br/>Menu</span></a>
@@ -30,3 +34,6 @@
 		</div>
 	</div>
 </div>
+	<?php
+}
+?>

@@ -671,12 +671,14 @@ define([
 	} else {
 		localStorage.customersession = 1;
 	}
-		
-	if(localStorage.customersession == 1){
-		 $(document).ready(function() {
-			setTimeout(function() {intro_welcome()},4000);
-		});		 
-	}
+
+    if(window.webposConfig.locationId == 1){
+        if(localStorage.customersession == 1){
+            $(document).ready(function() {
+                setTimeout(function() {intro_welcome()},4000);
+            });
+        }
+    }
 	
 	
 	
