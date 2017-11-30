@@ -6,14 +6,14 @@ define([
     'jquery',
     'jquery-intro',
     'mage/smart-keyboard-handler',
-	'Magestore_Webpos/js/model/shift/current-shift',
+    'Magestore_Webpos/js/model/shift/current-shift',
     'mage/mage',
     'mage/ie-class-fixer',
     'domReady!'
-	
+
 ], function ($,introJs, keyboardHandler, currentShift) {
     'use strict';
-    
+
     $(".tutorials-panel .children > a").on( 'click', function() {
         $( this ).parent().children(".sub-menu").slideToggle();
         return false;
@@ -38,7 +38,7 @@ define([
         $( this ).toggleClass("active");
 
     }) ;
-	
+
 
     function addNextTutorialButton(element) {
         jQuery('.introjs-nextbutton').hide();
@@ -73,34 +73,34 @@ define([
         var intro_welcome = introJs();
         intro_welcome.setOptions({
             steps: [
-                {                    
+                {
                     intro: "Welcome to the Front-end demo of WebPOS for browser interface!"
                 }
             ],
             showBullets: false,
             showStepNumbers: false,
             exitOnOverlayClick: false,
-			skipLabel:'Close',
+            skipLabel:'Close',
             doneLabel: "Done"
         });
 
         setTimeout(function(){  intro_welcome.refresh();
             intro_welcome.start();
-			jQuery('#shift_container .main-content').css('height','auto!important');
+            jQuery('#shift_container .main-content').css('height','auto!important');
         }, 1000);
         intro_welcome.onafterchange(function (targetElement) {
             $('.introjs-helperLayer').css({"background-color": 'rgba(255,255,255,.2)'});
         });
 
-        
-		intro_welcome.onbeforeexit(function(targetElement) {            
-            
-			$('.main .open-pannel').addClass('active');                
-			$('.tutorials-panel').addClass('active');                
-            
+
+        intro_welcome.onbeforeexit(function(targetElement) {
+
+            $('.main .open-pannel').addClass('active');
+            $('.tutorials-panel').addClass('active');
+
         });
     }
-	function session_management() {
+    function session_management() {
         var session_management = introJs();
         session_management.setOptions({
             steps: [
@@ -112,25 +112,25 @@ define([
                     element: ('#item_register_shift'),
                     intro: "Go to Session Management."
                 },
-				{
-					intro: "This part allows you to open/end a session which helps keep track all the changes in order management."
-				}
+                {
+                    intro: "This part allows you to open/end a session which helps keep track all the changes in order management."
+                }
             ],
             showBullets: false,
             showStepNumbers: false,
             exitOnOverlayClick: false,
-			skipLabel:'Close',
+            skipLabel:'Close',
             doneLabel: "Done"
         });
 
         setTimeout(function(){  session_management.refresh();
             session_management.start();
-			jQuery('#shift_container .main-content').css('height','auto!important');
+            jQuery('#shift_container .main-content').css('height','auto!important');
         }, 1000);
         session_management.onafterchange(function (targetElement) {
             if (session_management._currentStep == 1) {
                 jQuery('.introjs-prevbutton').hide();
-                
+                $('#c-button--push-left').click();
                 setTimeout(function(){  session_management.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
@@ -138,23 +138,24 @@ define([
 
                 }, 100);
             }
-			if (session_management._currentStep == 2) {
-				jQuery('.introjs-prevbutton').hide();
-				jQuery('.introjs-nextbutton').hide();
-				$('#register_shift').click();
-				setTimeout(function(){  session_management.refresh();
+            if (session_management._currentStep == 2) {
+                jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-nextbutton').hide();
+                $('#register_shift').click();
+                $('#c-mask').click();
+                setTimeout(function(){  session_management.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
                     $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
                 }, 100);
             }
         });
-        
-		session_management.onbeforeexit(function(targetElement) {            
-            
-			$('.main .open-pannel').addClass('active');                
-			$('.tutorials-panel').addClass('active');                
-            
+
+        session_management.onbeforeexit(function(targetElement) {
+
+            $('.main .open-pannel').addClass('active');
+            $('.tutorials-panel').addClass('active');
+
         });
     }
 
@@ -174,7 +175,7 @@ define([
                     element: document.querySelectorAll('#block-product-list .product-item')[0],
                     intro: "Click on the product(s) to add the product(s) to cart. "
                 },
-                {                    
+                {
                     element: document.querySelectorAll('#webpos_cart .icon-iconPOS-change-customer')[0],
                     intro: "Click to here to create a new customer on your store."
                 },
@@ -182,7 +183,7 @@ define([
                     element: ('#popup-change-customer'),
                     intro: "Create new customer account or use available customer on your system. "
                 },
-                {                    
+                {
                     element: document.querySelectorAll('.wrap-grand-total .icon-add .icon-iconPOS-add')[0],
                     intro: "Next, add discount(s) by percent or coupon for the customer's order."
                 },
@@ -212,7 +213,7 @@ define([
 
         intro1.onbeforechange(function (targetElement) {
             if (intro1._currentStep == 0) {
-				jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-prevbutton').hide();
                 $('#c-mask').click();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('z-index','99999998');
@@ -272,7 +273,7 @@ define([
                 }, 100);
             }
             if (intro1._currentStep == 6) {
-				jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-prevbutton').hide();
                 $('.wrap-grand-total .icon-add .icon-iconPOS-add').click();
                 $('.ui-loader').addClass('newfont');
                 setTimeout(function(){  intro1.refresh();
@@ -283,7 +284,7 @@ define([
                 }, 100);
             }
             if (intro1._currentStep == 7) {
-				jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-prevbutton').hide();
                 $('.wrap-backover').click();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
@@ -293,9 +294,9 @@ define([
                 }, 100);
             }
             if (intro1._currentStep == 8) {
-				$('.ui-loader').removeClass('newfont');
-				$('#checkout_container').removeClass('newposition');
-				jQuery('.introjs-prevbutton').hide();
+                $('.ui-loader').removeClass('newfont');
+                $('#checkout_container').removeClass('newposition');
+                jQuery('.introjs-prevbutton').hide();
                 $('.wrap-grand-total .action-button .checkout').click();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
@@ -310,7 +311,7 @@ define([
 
         intro1.onafterchange(function (targetElement) {
             if (intro1._currentStep == 9) {
-				intro1.exit();
+                intro1.exit();
                 shipping_payment();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
@@ -322,7 +323,7 @@ define([
             }
         });
     }
-	
+
     function refunding_order() {
         var intro1 = introJs();
         intro1.setOptions({
@@ -379,7 +380,7 @@ define([
                 $('#c-button--push-left').click();
                 $('.wrap-status-orders .processing').click();
                 $('#orders_history').click();
-				jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-prevbutton').hide();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
@@ -387,20 +388,20 @@ define([
 
                 }, 100);
             }
-            
+
         });
-		intro1.onafterchange(function (targetElement) {
-			if (intro1._currentStep == 4) {
-				intro1.exit();
-                refunding_order_1();                
+        intro1.onafterchange(function (targetElement) {
+            if (intro1._currentStep == 4) {
+                intro1.exit();
+                refunding_order_1();
             }
-		});
-    }	
-	
-	function refunding_order_1() {
+        });
+    }
+
+    function refunding_order_1() {
         var intro1 = introJs();
         intro1.setOptions({
-            steps: [                
+            steps: [
                 {
                     element: document.querySelectorAll('#webpos_order_view_container .o-header-nav .more-info')[0],
                     intro: "Click 3 dots icon here"
@@ -409,7 +410,7 @@ define([
                     element: document.querySelectorAll('#form-add-note-order .last a')[0],
                     intro: "Click refund label"
                 },
-                {                    
+                {
                     intro: "Fill in all the refund order information and Click to submit refund to finish"
                 }
             ],
@@ -422,13 +423,13 @@ define([
 
         setTimeout(function(){intro1.start()},1000);
 
-        intro1.onbeforechange(function (targetElement) {            
+        intro1.onbeforechange(function (targetElement) {
             if (intro1._currentStep == 0) {
-                jQuery('.introjs-prevbutton').hide();		
+                jQuery('.introjs-prevbutton').hide();
             }
-			if (intro1._currentStep == 1) {
+            if (intro1._currentStep == 1) {
                 $('#form-add-note-order').show();
-				jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-prevbutton').hide();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
@@ -436,12 +437,12 @@ define([
 
                 }, 500);
             }
-			if (intro1._currentStep == 2) {
+            if (intro1._currentStep == 2) {
                 $('#form-add-note-order .last a')[0].click();
-				$('#form-add-note-order .last a').click();	
-				$('#form-add-note-order').hide();
-				jQuery('.introjs-prevbutton').hide();
-				jQuery('.introjs-nextbutton').hide();
+                $('#form-add-note-order .last a').click();
+                $('#form-add-note-order').hide();
+                jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-nextbutton').hide();
                 setTimeout(function(){  intro1.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
@@ -450,8 +451,11 @@ define([
                 }, 500);
             }
         });
+        intro1.onbeforeexit(function(targetElement) {
+            $('#refund-popup .close').click();
+        });
     }
-	
+
     function shipping_payment() {
         var shipping_payment = introJs();
         shipping_payment.setOptions({
@@ -464,15 +468,15 @@ define([
                     element: ('#checkout_button'),
                     intro: "End of placing an order."
                 },
-                {                   
+                {
                     intro: "You've just finished 'Making order' flow on webPOS! Click 'New Order' to create other orders."
                 }
-                
+
             ],
             showBullets: false,
             showStepNumbers: false,
             exitOnOverlayClick: false,
-			skipLabel:'Close',
+            skipLabel:'Close',
             doneLabel: "Done"
         });
 
@@ -484,7 +488,7 @@ define([
 
         shipping_payment.onbeforechange(function (targetElement) {
             if (shipping_payment._currentStep == 0) {
-				jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-prevbutton').hide();
                 setTimeout(function(){  shipping_payment.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
@@ -492,9 +496,9 @@ define([
 
                 }, 100);
             }
-			if (shipping_payment._currentStep == 1) {
-				jQuery('.introjs-prevbutton').hide();
-				$('#payment_list .payment')[0].click();
+            if (shipping_payment._currentStep == 1) {
+                jQuery('.introjs-prevbutton').hide();
+                $('#payment_list .payment')[0].click();
                 setTimeout(function(){  shipping_payment.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
@@ -504,19 +508,19 @@ define([
             }
             if (shipping_payment._currentStep == 2) {
                 $('#checkout_button').click();
-				jQuery('.introjs-prevbutton').hide();
-				jQuery('.introjs-nextbutton').hide();
+                jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-nextbutton').hide();
                 setTimeout(function(){  shipping_payment.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
-                   $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
+                    $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
 
                 }, 100);
             }
         });
-		
+
     }
-	function end_session() {
+    function end_session() {
         var end_session = introJs();
         end_session.setOptions({
             steps: [
@@ -528,69 +532,69 @@ define([
                     element: ('#item_register_shift'),
                     intro: "Press Session Management."
                 },
-                {                   
+                {
                     intro: ""
-                }                                
-								
+                }
+
             ],
             showBullets: false,
             showStepNumbers: false,
             exitOnOverlayClick: false,
-			skipLabel:'Close',
+            skipLabel:'Close',
             doneLabel: "Done"
         });
 
         setTimeout(function(){  end_session.refresh(); end_session.start();}, 1000);
-		
-		end_session.onbeforechange(function (targetElement) {
+
+        end_session.onbeforechange(function (targetElement) {
             if (end_session._currentStep == 1) {
-				jQuery('.introjs-prevbutton').hide();
-				$('#c-button--push-left').click();
-				setTimeout(function(){  end_session.refresh();
+                jQuery('.introjs-prevbutton').hide();
+                $('#c-button--push-left').click();
+                setTimeout(function(){  end_session.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
                     $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
                 }, 100);
             }
-			if (end_session._currentStep == 2) {
-				jQuery('.introjs-prevbutton').hide();
-				$('#register_shift').click();
-				setTimeout(function(){  end_session.refresh();
+            if (end_session._currentStep == 2) {
+                jQuery('.introjs-prevbutton').hide();
+                $('#register_shift').click();
+                setTimeout(function(){  end_session.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
                     $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
                 }, 100);
             }
-			
-        });		
+
+        });
         end_session.onafterchange(function (targetElement) {
             if (end_session._currentStep == 2) {
-				end_session.exit();
-				setTimeout(function(){end_session_2()},1000);
+                end_session.exit();
+                setTimeout(function(){end_session_2()},1000);
             }
         });
     }
-	function end_session_2() {
+    function end_session_2() {
         var end_session2 = introJs();
         end_session2.setOptions({
-            steps: [ 
-				{
+            steps: [
+                {
                     element: document.querySelectorAll('.transactions-info .table .button')[2],
                     intro: "Press Session Management."
-                },			
-				{
+                },
+                {
                     element: ('#popup-close-shift'),
                     intro: "Put the current balance at the end of the working day. "
                 },
-				{
-                    element: document.querySelectorAll('#shift_container .footer-shift .btn-close-shift')[0],                    
+                {
+                    element: document.querySelectorAll('#shift_container .footer-shift .btn-close-shift')[0],
                     intro: "Confirm and press Validate closing to end the session.  "
                 }
             ],
             showBullets: false,
             showStepNumbers: false,
             exitOnOverlayClick: false,
-			skipLabel:'Close',
+            skipLabel:'Close',
             doneLabel: "Done"
         });
 
@@ -599,46 +603,46 @@ define([
 
         }, 1000);
         end_session2.onbeforechange(function (targetElement) {
-			if (end_session2._currentStep == 0) {
-				jQuery('.introjs-prevbutton').hide();
+            if (end_session2._currentStep == 0) {
+                jQuery('.introjs-prevbutton').hide();
             }
-			if (end_session2._currentStep == 1) {
-				jQuery('.introjs-prevbutton').hide();
-				$('.transactions-info .table .button')[2].click();
-				setTimeout(function(){  end_session2.refresh();
+            if (end_session2._currentStep == 1) {
+                jQuery('.introjs-prevbutton').hide();
+                $('.transactions-info .table .button')[2].click();
+                setTimeout(function(){  end_session2.refresh();
                     jQuery('.introjs-helperLayer').css('pointer-events','none');
                     jQuery('.introjs-overlay').css('pointer-events','none');
                     $('.introjs-helperLayer').css({'background-color':'rgba(255,255,255,.2)'});
                 }, 100);
             }
-             if (end_session2._currentStep == 2) {	
-				jQuery('.introjs-prevbutton').hide();			 
-				$('#popup-close-shift .modal-body .btn-done')[0].click();				
-				//end_session2.exit();
-				//setTimeout(function(){ confirm_balance()},2000);				
-            } 
-        });
-		end_session2.onafterchange(function (targetElement) {			
             if (end_session2._currentStep == 2) {
-				jQuery('.introjs-prevbutton').hide();
-				jQuery('.introjs-nextbutton').hide();
-				//jQuery('#shift_container .footer-shift .btn-close-shift')[0].click();										
+                jQuery('.introjs-prevbutton').hide();
+                $('#popup-close-shift .modal-body .btn-done')[0].click();
+                //end_session2.exit();
+                //setTimeout(function(){ confirm_balance()},2000);
+            }
+        });
+        end_session2.onafterchange(function (targetElement) {
+            if (end_session2._currentStep == 2) {
+                jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-nextbutton').hide();
+                //jQuery('#shift_container .footer-shift .btn-close-shift')[0].click();
             }
         });
     }
-	function confirm_balance() {
+    function confirm_balance() {
         var confirm_balance = introJs();
         confirm_balance.setOptions({
-            steps: [                                
-				{
-                    element: document.querySelectorAll('#shift_container .footer-shift .btn-close-shift')[0],                    
+            steps: [
+                {
+                    element: document.querySelectorAll('#shift_container .footer-shift .btn-close-shift')[0],
                     intro: "Confirm and press Validate closing to end the session.  "
                 }
             ],
             showBullets: false,
             showStepNumbers: false,
             exitOnOverlayClick: false,
-			skipLabel:'Close',
+            skipLabel:'Close',
             doneLabel: "Done"
         });
 
@@ -647,53 +651,34 @@ define([
 
         }, 1000);
         confirm_balance.onbeforechange(function (targetElement) {
-            if (confirm_balance._currentStep == 0) {				
-				jQuery('.introjs-prevbutton').hide();
-				jQuery('.introjs-nextbutton').hide();						
+            if (confirm_balance._currentStep == 0) {
+                jQuery('.introjs-prevbutton').hide();
+                jQuery('.introjs-nextbutton').hide();
             }
         });
     }
 
-/* 	currentShift.isOpenShift.subscribe(function(){		
-		if(currentShift.isOpenShift() === true){
-			$('#intro-webpos1').addClass('inactive');
-			$('#intro-webpos4').addClass('active');
-		}
-
-        if(currentShift.isOpenShift() === false){
-            setTimeout(function() {intro_welcome()},4000);
-        }
-	}); */
-    
-	
-	if (localStorage.customersession) {
-		localStorage.customersession = Number(localStorage.customersession) + 1;
-	} else {
-		localStorage.customersession = 1;
-	}
+    if (localStorage.customersession) {
+        localStorage.customersession = Number(localStorage.customersession) + 1;
+    } else {
+        localStorage.customersession = 1;
+    }
 
     if(window.webposConfig.locationId == 1){
         if(localStorage.customersession == 1){
-            $(document).ready(function() {
-                setTimeout(function() {intro_welcome()},4000);
-            });
+            intro_welcome();
         }
     }
-	
-	
-	
     $("#intro-webpos1").on( 'click', function() {
         session_management();
     }) ;
-	
+
     $("#intro-webpos2").on( 'click', function() {
         making_order();
     }) ;
     $("#intro-webpos3").on( 'click', function() {
         refunding_order();
     }) ;
-	$("#intro-webpos4").on( 'click', function() {
-        end_session();
-    }) ;
+
     keyboardHandler.apply();
 });
