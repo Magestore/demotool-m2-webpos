@@ -42,7 +42,7 @@ define([
         
     var currentLocation = location.pathname.substr(1);
 
-    var currentLocationurl = "";
+    var currentLocationurl = "m2/starter/01/";
    
 
     var welcome_link = currentLocationurl + 'admin/admin/dashboard/';
@@ -202,7 +202,7 @@ define([
                 position: 'right'
             },
             ],
-            showBullets:false,
+
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -303,7 +303,6 @@ define([
                 },
 
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -368,7 +367,6 @@ define([
                 position: 'right'
             },
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -427,7 +425,6 @@ define([
                 position: 'right'
             },
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -487,7 +484,6 @@ define([
             },
             ],
             scrollToElement:true,
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -566,7 +562,6 @@ define([
                         },
                         
                     ],
-                    showBullets:false,
                     exitOnOverlayClick:false,
                     skipLabel:'Close',
                     doneLabel:'Close',
@@ -648,7 +643,6 @@ define([
                     position: 'right'
                 }
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -708,7 +702,6 @@ define([
                 position: 'right'
             },
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -782,7 +775,6 @@ define([
                             position: 'right'
                         }
                     ],
-                    showBullets:false,
                     exitOnOverlayClick:false,
                     skipLabel:'Close',
                     doneLabel:'Close',
@@ -829,7 +821,6 @@ define([
                 position: 'right'
             },
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -896,7 +887,6 @@ define([
                     position: 'right'
                 }
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -953,7 +943,6 @@ define([
                 
                 
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -1028,7 +1017,6 @@ define([
                 
                 
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -1100,7 +1088,6 @@ define([
                 },
             
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
@@ -1218,7 +1205,6 @@ define([
                 },
 
             ],
-            showBullets:false,
             exitOnOverlayClick:false,
             skipLabel:'Close',
             doneLabel:'Close',
