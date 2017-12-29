@@ -4,7 +4,7 @@
  */
 define([
     'jquery',
-    'jquery-intro',
+    'jquery.intro',
     'mage/smart-keyboard-handler',
     'Magestore_Webpos/js/model/shift/current-shift',
     'mage/mage',

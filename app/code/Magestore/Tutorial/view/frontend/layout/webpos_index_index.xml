@@ -9,7 +9,6 @@
     <head>
         <css src="Magestore_Tutorial/css/introjs.css" media="screen"/>
         <css src="Magestore_Tutorial/css/tutorials-introjs.css" media="screen"/>
-		<link src="Magestore_Tutorial::js/zopim.js"/>
     </head>
     <body>        
         <referenceContainer name="content">
